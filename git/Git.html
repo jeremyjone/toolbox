@@ -1,0 +1,565 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>no title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    .markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}/**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}.emoji {
+  height: 0.8em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}
+    /* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+    </style>
+    
+  </head>
+  <body for="html-export">
+    <div class="mume markdown-preview">
+    <html><head></head><body><div><h1 class="mume-header" id="%E5%AE%89%E8%A3%85" ebook-toc-level-1 heading="&amp;#x5B89;&amp;#x88C5;">&#x5B89;&#x88C5;</h1>
+
+<ul>
+<li>
+<p>###Linux</p>
+</li>
+<li>
+<p>Linux&#x4E0B;</p>
+<p>sudo apt-get install git</p>
+</li>
+<li>
+<p>&#x8001;&#x4E00;&#x70B9;&#x7684;Debian&#x6216;Ubuntu Linux&#xFF0C;&#x8981;&#x628A;&#x547D;&#x4EE4;&#x6539;&#x4E3A;</p>
+<p>sudo apt-get install git-core</p>
+</li>
+<li>
+<p>###Windows</p>
+</li>
+<li>
+<p>&#x5728;Windows&#x4E0A;&#x4F7F;&#x7528;Git&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE;Git&#x5B98;&#x7F51;&#x76F4;&#x63A5;<a href="https://git-scm.com/downloads">&#x4E0B;&#x8F7D;&#x5B89;&#x88C5;&#x7A0B;&#x5E8F;</a>&#xFF0C;&#xFF08;&#x7F51;&#x901F;&#x6162;&#x7684;&#x540C;&#x5B66;&#x8BF7;&#x79FB;&#x6B65;<a href="https://pan.baidu.com/s/1kU5OCOB#list/path=%2Fpub%2Fgit">&#x56FD;&#x5185;&#x955C;&#x50CF;</a>&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x6309;&#x9ED8;&#x8BA4;&#x9009;&#x9879;&#x5B89;&#x88C5;&#x5373;&#x53EF;&#x3002;&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x5728;&#x5F00;&#x59CB;&#x83DC;&#x5355;&#x91CC;&#x627E;&#x5230;&#x201C;Git&#x201D;-&gt;&#x201C;Git Bash&#x201D;&#xFF0C;&#x8E66;&#x51FA;&#x4E00;&#x4E2A;&#x7C7B;&#x4F3C;&#x547D;&#x4EE4;&#x884C;&#x7A97;&#x53E3;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x5C31;&#x8BF4;&#x660E;Git&#x5B89;&#x88C5;&#x6210;&#x529F;&#xFF01;<br>
+<img src="data:image/png;charset=utf-8;base64,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acOyMsAAp0FMI4P4yw0inP5jiGprMG6WwbLlBrMeqHxO0cf753Rib4XBEgyyMPgIg4UYRF2goFph8E/MpP0HD/Muljj1qdJPk3sx3nwVo0nYhY9Fdf/frMNZ18+Jcd87GNn/xMh6C2PBJxifzse4oc55iq9RZ4NnpxqMbHfB91PAn8Z3G0x7yeD2Vr+CRtGv6+MYGd/ceHnrFvMlsy6YX+s6gjmm7Xpj/XyLxvyO+3bMcXN3F1OcIiKWmFZwYwe4PAqO7YDsD+H7czVmJeJDWWIXERGRX71f/KXB5cuXV0UcIiIiUgXKvxUf3pQ7xj5L/471qe44ydG9G3kv7Wne+iXf/REREZHzxi2xh9DkvokM7hhK7t4TxOa9x993xBAUEtivRhEREZELzy2xh3FZs5oEFebwxa6ruT1vNe9N+TawP18pIiIiFwW3MfYCNi5cS0H1TvRtGxngrzAVERGRi0m5l+cOf/4cw6eu5pAjiFq3juGpHo1O/7JSERERufhVeCu+kO/nv8D0TUWUGpdyw8jJjGhbib/lKCIiIheUl6+7lbB/4etsPFWT9tc2IOz8xiQiIiJnqezlOWcstz4xgCYbP6egWhDV4ttTL7iYPVsP+PxTvCIiInLxcHsr/hSFjkbcOvhGaoY6wGjGT8tf5vlP9Wf0REREfi3KEnvJfj574UE+eyGSxMde5K7NzzFu8R6/fwVQRERELh4e/h57ATmTh5Bz/mMRERGRX+gX/654ERERuXgosYuIiNjIL07sN910U1XEISIiIlVALXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREbUWIXERGxESV2ERERG1FiFxERsREldhERERtRYhcREbERJXYREREb+X9Xy5kBbJu+lwAAAABJRU5ErkJggg==" alt></p>
+</li>
+<li>
+<p>###Mac OS X</p>
+</li>
+<li>
+<p>&#x4E00;&#x662F;&#x5B89;&#x88C5;homebrew&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7;homebrew&#x5B89;&#x88C5;Git&#xFF0C;&#x5177;&#x4F53;&#x65B9;&#x6CD5;&#x8BF7;&#x53C2;&#x8003;homebrew&#x7684;&#x6587;&#x6863;&#xFF1A;<a href="http://brew.sh/">http://brew.sh/</a>&#x3002;</p>
+</li>
+<li>
+<p>&#x7B2C;&#x4E8C;&#x79CD;&#x65B9;&#x6CD5;&#x66F4;&#x7B80;&#x5355;&#xFF0C;&#x4E5F;&#x662F;&#x63A8;&#x8350;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5C31;&#x662F;&#x76F4;&#x63A5;&#x4ECE;AppStore&#x5B89;&#x88C5;Xcode&#xFF0C;Xcode&#x96C6;&#x6210;&#x4E86;Git&#xFF0C;&#x4E0D;&#x8FC7;&#x9ED8;&#x8BA4;&#x6CA1;&#x6709;&#x5B89;&#x88C5;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x8FD0;&#x884C;Xcode&#xFF0C;&#x9009;&#x62E9;&#x83DC;&#x5355;&#x201C;Xcode&#x201D;-&gt;&#x201C;Preferences&#x201D;&#xFF0C;&#x5728;&#x5F39;&#x51FA;&#x7A97;&#x53E3;&#x4E2D;&#x627E;&#x5230;&#x201C;Downloads&#x201D;&#xFF0C;&#x9009;&#x62E9;&#x201C;Command Line Tools&#x201D;&#xFF0C;&#x70B9;&#x201C;Install&#x201D;&#x5C31;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x5B89;&#x88C5;&#x4E86;&#x3002;</p>
+</li>
+</ul>
+<p>&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;shell&#x6216;bash&#x4E2D;&#x67E5;&#x770B;git</p>
+<pre class="language-text">git --version
+</pre>
+<p>&#x663E;&#x793A;&#x5F53;&#x524D;&#x5B89;&#x88C5;&#x7684;git&#x7248;&#x672C;&#x4FE1;&#x606F;&#xFF0C;&#x8BF4;&#x660E;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x6210;&#x529F;&#x4E86;&#x3002;</p>
+<h1 class="mume-header" id="%E9%85%8D%E7%BD%AE" ebook-toc-level-1 heading="&amp;#x914D;&amp;#x7F6E;">&#x914D;&#x7F6E;</h1>
+
+<ul>
+<li>
+<p>&#x63D0;&#x4EA4;&#x540D;&#x5B57;</p>
+<p>git config --global <a href="http://user.name">user.name</a> &quot;yourname&quot;</p>
+</li>
+<li>
+<p>&#x63D0;&#x4EA4;&#x90AE;&#x7BB1;</p>
+<p>git config --global user.email <a href="mailto:%22yourname@example.com">&quot;yourname@example.com</a>&quot;</p>
+</li>
+<li>
+<p>&#x521B;&#x5EFA;SSH</p>
+<p>ssh-keygen -t rsa -C <a href="mailto:%22youremail@example.com">&quot;youremail@example.com</a>&quot;</p>
+</li>
+<li>
+<p>&#x5C06;&#x65B0;&#x751F;&#x6210;&#x7684;SSH&#x5168;&#x90E8;&#x62F7;&#x8D1D;&#x5E76;&#x6DFB;&#x52A0;&#x5230;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x7684;&#x76F8;&#x5E94;&#x8BBE;&#x7F6E;&#x4E2D;&#x3002;</p>
+</li>
+</ul>
+<h1 class="mume-header" id="%E6%9C%AC%E5%9C%B0%E4%BD%BF%E7%94%A8" ebook-toc-level-1 heading="&amp;#x672C;&amp;#x5730;&amp;#x4F7F;&amp;#x7528;">&#x672C;&#x5730;&#x4F7F;&#x7528;</h1>
+
+<h2 class="mume-header" id="-%E6%8F%90%E4%BA%A4" ebook-toc-level-2 heading="- &amp;#x63D0;&amp;#x4EA4;">- &#x63D0;&#x4EA4;</h2>
+
+<ul>
+<li>
+<p>&#x521D;&#x59CB;&#x5316;&#x672C;&#x5730;&#x4ED3;&#x5E93;</p>
+<p>git init</p>
+</li>
+<li>
+<p>&#x68C0;&#x67E5;&#x591A;&#x4F59;&#x7684;&#x7A7A;&#x767D;&#x5B57;&#x7B26;</p>
+<p>git diff --check</p>
+</li>
+<li>
+<p>&#x5C06;&#x6587;&#x4EF6;&#x653E;&#x5165;&#x6682;&#x5B58;&#x533A;</p>
+</li>
+<li>
+<p>&#x5B58;&#x653E;&#x6307;&#x5B9A;&#x6587;&#x4EF6;</p>
+<p>git add filename</p>
+</li>
+<li>
+<p>&#x5C06;&#x6587;&#x4EF6;&#x7684;&#x4FEE;&#x6539;&#x3001;&#x65B0;&#x5EFA;&#x6DFB;&#x52A0;&#x5230;&#x6682;&#x5B58;&#x533A;</p>
+<p>git add . //&#x6CE8;&#x610F;add&#x540E;&#x9762;&#x662F;&#x4E00;&#x4E2A;&#x70B9;,&#x4F60;&#x6CA1;&#x770B;&#x9519;</p>
+</li>
+<li>
+<p>&#x5C06;&#x6587;&#x4EF6;&#x7684;&#x4FEE;&#x6539;&#x3001;&#x5220;&#x9664;&#x6DFB;&#x52A0;&#x5230;&#x6682;&#x5B58;&#x533A;</p>
+<p>git add -u</p>
+</li>
+<li>
+<p>&#x5C06;&#x6587;&#x4EF6;&#x7684;&#x4FEE;&#x6539;&#x3001;&#x5220;&#x9664;&#x548C;&#x65B0;&#x5EFA;&#x6DFB;&#x52A0;&#x5230;&#x6682;&#x5B58;&#x533A;</p>
+<p>git add -A</p>
+</li>
+<li>
+<p>&#x67E5;&#x770B;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x4E0E;&#x63D0;&#x4EA4;&#x60C5;&#x51B5;</p>
+<p>git status</p>
+</li>
+<li>
+<p>&#x5C06;&#x4FEE;&#x6539;&#x63D0;&#x4EA4;&#x7248;&#x672C;&#x5E93;</p>
+<p>git commit -m &quot;desc&quot;</p>
+<p>// &#x591A;&#x884C;desc<br>
+git commit -m &apos;</p>
+<ol>
+<li>log1</li>
+<li>log2</li>
+<li>log3<br>
+&apos;</li>
+</ol>
+</li>
+<li>
+<p>&#x91CD;&#x65B0;&#x63D0;&#x4EA4;</p>
+<p>git commit --amend -m &quot;desc&quot;</p>
+</li>
+<li>
+<p>&#x64A4;&#x9500;&#x5BF9;&#x5DE5;&#x4F5C;&#x533A;&#x6587;&#x4EF6;&#x7684;&#x4FEE;&#x6539;&#xFF0C;&#x82E5;&#x4FEE;&#x6539;&#x540E;&#x6CA1;&#x6709;&#x653E;&#x5230;&#x6682;&#x5B58;&#x533A;&#xFF0C;&#x5219;&#x4E0E;&#x4E0A;&#x4E2A;&#x7248;&#x672C;&#x4E00;&#x81F4;&#xFF0C;&#x82E5;&#x4FEE;&#x6539;&#x540E;&#x653E;&#x5230;&#x6682;&#x5B58;&#x533A;&#xFF0C;&#x5219;&#x548C;&#x6682;&#x5B58;&#x533A;&#x4E00;&#x81F4;&#x3002;</p>
+<p>git checkout -- filename</p>
+</li>
+<li>
+<p>&#x53D6;&#x6D88;&#x6682;&#x5B58;&#x533A;&#x7684;&#x6307;&#x5B9A;&#x6587;&#x4EF6;</p>
+<p>git reset HEAD filename</p>
+</li>
+<li>
+<p>&#x5220;&#x9664;&#x672C;&#x5730;&#x6587;&#x4EF6;&#xFF0C;&#x4E0D;&#x518D;&#x7EB3;&#x5165;&#x7248;&#x672C;&#x7BA1;&#x7406;</p>
+<p>git rm filename</p>
+</li>
+<li>
+<p>&#x4E0D;&#x7EB3;&#x5165;&#x7248;&#x672C;&#x7BA1;&#x7406;&#xFF0C;&#x4F46;&#x672C;&#x5730;&#x4E0D;&#x5220;&#x9664;&#x6587;&#x4EF6;</p>
+<p>git rm --cached filename</p>
+</li>
+<li>
+<p>&#x67E5;&#x770B;&#x63D0;&#x4EA4;&#x65E5;&#x5FD7;</p>
+<p>git log  // &#x4ECE;&#x8FD1;&#x5230;&#x8FDC;&#x663E;&#x793A;&#x63D0;&#x4EA4;&#x65E5;&#x5FD7;</p>
+<p>git log --pretty=oneline  // &#x5C06;&#x6BCF;&#x4E2A;&#x63D0;&#x4EA4;&#x8BB0;&#x5F55;&#x653E;&#x5728;&#x4E00;&#x884C;&#x663E;&#x793A;&#xFF0C;&#x5176;&#x5B83;&#x53C2;&#x6570;&#xFF1A;oneline&#x3001;short&#x3001;full&#x3001;fuller&#x7B49;</p>
+</li>
+</ul>
+<h2 class="mume-header" id="-%E5%9B%9E%E9%80%80" ebook-toc-level-2 heading="- &amp;#x56DE;&amp;#x9000;">- &#x56DE;&#x9000;</h2>
+
+<ul>
+<li>
+<p>&#x8BB0;&#x5F55;&#x56DE;&#x9000;&#x7684;&#x547D;&#x4EE4;</p>
+<p>git reflog</p>
+</li>
+<li>
+<p>&#x56DE;&#x9000;&#x5230;&#x4E0A;&#x4E00;&#x7248;&#x672C;</p>
+<p>git reset --hard HEAD</p>
+</li>
+<li>
+<p>&#x56DE;&#x9000;&#x5230;&#x6307;&#x5B9A;&#x7248;&#x672C;</p>
+<p>git reset --hard &#x54C8;&#x5E0C;&#x503C;  // &#x54C8;&#x5E0C;&#x503C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;reflog&#x547D;&#x4EE4;&#x67E5;&#x770B;</p>
+</li>
+</ul>
+<h2 class="mume-header" id="-%E5%88%86%E6%94%AF" ebook-toc-level-2 heading="- &amp;#x5206;&amp;#x652F;">- &#x5206;&#x652F;</h2>
+
+<ul>
+<li>
+<p>&#x67E5;&#x770B;&#x5206;&#x652F;</p>
+<p>git branch</p>
+</li>
+<li>
+<p>&#x521B;&#x5EFA;&#x5206;&#x652F;</p>
+<p>git branch branchname</p>
+</li>
+<li>
+<p>&#x5207;&#x6362;&#x5206;&#x652F;</p>
+<p>git checkout branchname</p>
+<p>git checkout -b branchname  // &#x521B;&#x5EFA;&#x5E76;&#x5207;&#x6362;&#x5230;&#x8BE5;&#x5206;&#x652F;<br>
+git checkout -f branchname  // &#x5F3A;&#x5236;&#x5207;&#x6362;&#x5230;&#x8BE5;&#x5206;&#x652F;</p>
+</li>
+<li>
+<p>&#x5220;&#x9664;&#x5206;&#x652F;</p>
+<p>git branch -D branchname</p>
+</li>
+<li>
+<p>&#x5408;&#x5E76;&#x5206;&#x652F;</p>
+<p>git merge branchname</p>
+</li>
+<li>
+<p>&#x67E5;&#x770B;&#x5408;&#x5E76;&#x8BB0;&#x5F55;</p>
+<p>git log --graph --pretty=oneline --abbrev-commit  // &#x67E5;&#x770B;&#x5206;&#x652F;&#x5408;&#x5E76;&#x60C5;&#x51B5;<br>
+git branch --merged  // &#x67E5;&#x770B;&#x5DF2;&#x5408;&#x5E76;&#x5230;&#x5F53;&#x524D;&#x5206;&#x652F;&#x7684;&#x5206;&#x652F;&#x3001;&#x4E0A;&#x6E38;&#x5206;&#x652F;<br>
+git branch --no-merged  // &#x67E5;&#x770B;&#x5C1A;&#x672A;&#x5408;&#x5E76;&#x7684;&#x5206;&#x652F;</p>
+</li>
+</ul>
+<h2 class="mume-header" id="-%E6%93%8D%E4%BD%9Cgit%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6" ebook-toc-level-2 heading="- &amp;#x64CD;&amp;#x4F5C;git&amp;#x4E2D;&amp;#x7684;&amp;#x6587;&amp;#x4EF6;">- &#x64CD;&#x4F5C;git&#x4E2D;&#x7684;&#x6587;&#x4EF6;</h2>
+
+<ul>
+<li>
+<p>&#x67E5;&#x770B;git&#x5360;&#x7528;&#x7A7A;&#x95F4;</p>
+<p>du -sh.git</p>
+</li>
+<li>
+<p>&#x67E5;&#x627E;git&#x4E2D;&#x7684;&#x6587;&#x4EF6;</p>
+<p>git verify-pack -v .git/objects/pack/pack-*.idx | sort -k 3 -g | tail -5  // &#x627E;&#x51FA;git&#x4E2D;&#x5360;&#x7A7A;&#x95F4;&#x6700;&#x5927;&#x7684;&#x524D;5&#x4E2A;&#x6587;&#x4EF6;&#x7684;id</p>
+<p>git rev-list --objects --all | grep .  // &#x67E5;&#x770B;&#x6587;&#x4EF6;&#x5217;&#x8868;&#xFF0C;&#x53EF;&#x4EE5;&#x548C;grep&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#xFF0C;grep&#x540E;&#x8DDF;&#x9700;&#x8981;&#x67E5;&#x627E;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x6216;id</p>
+</li>
+<li>
+<p>&#x5220;&#x9664;&#x5339;&#x914D;&#x7684;*.rar&#x6587;&#x4EF6;</p>
+<p>git filter-branch --force --index-filter &apos;git rm --cached --ignore-unmatch *.rar&apos; --prune-empty --tag-name-filter cat -- --all</p>
+</li>
+<li>
+<p>&#x56DE;&#x6536;&#x7A7A;&#x95F4;</p>
+<p>rm -rm .git/refs/original<br>
+git reflog expire --expire=now --all<br>
+git gc --prune=now<br>
+git gc --aggressive --prune=now</p>
+</li>
+</ul>
+<h2 class="mume-header" id="-%E6%AF%94%E8%BE%83" ebook-toc-level-2 heading="- &amp;#x6BD4;&amp;#x8F83;">- &#x6BD4;&#x8F83;</h2>
+
+<ul>
+<li>
+<p>&#x6BD4;&#x8F83;&#x5DE5;&#x4F5C;&#x533A;&#x4E0E;&#x6682;&#x5B58;&#x533A;&#x7684;&#x5DEE;&#x5F02;</p>
+<p>git diff</p>
+</li>
+<li>
+<p>&#x6BD4;&#x8F83;&#x5DE5;&#x4F5C;&#x533A;&#x4E0E;&#x5F53;&#x524D;&#x5206;&#x652F;&#x5E93;&#x7684;&#x5DEE;&#x5F02;</p>
+<p>git diff HEAD<br>
+git diff HEAD -- path  // &#x4E0E;&#x5F53;&#x524D;&#x5206;&#x652F;&#x5E93;&#x540C;&#x4E00;&#x76EE;&#x5F55;&#x6BD4;&#x8F83;</p>
+</li>
+<li>
+<p>&#x6BD4;&#x8F83;&#x6682;&#x5B58;&#x533A;&#x4E0E;&#x7248;&#x672C;&#x5E93;&#x7684;&#x5DEE;&#x5F02;</p>
+<p>git diff --cached (&#x6216; --staged)</p>
+</li>
+<li>
+<p>&#x6BD4;&#x8F83;&#x4E0D;&#x540C;&#x7248;&#x672C;&#x5E93;&#x4E2D;&#x4E0D;&#x540C;&#x6587;&#x4EF6;&#x7684;&#x5DEE;&#x5F02;</p>
+<p>git diff HEAD:filename HEAD:filename</p>
+</li>
+<li>
+<p>&#x67E5;&#x770B;&#x6BCF;&#x6B21;&#x63D0;&#x4EA4;&#x5DEE;&#x5F02;</p>
+<p>git log -p -2  // &#x67E5;&#x8BE2;&#x6BCF;&#x6B21;&#x63D0;&#x4EA4;&#x7684;&#x884C;&#x5DEE;&#x5F02;&#xFF0C; 2&#x67E5;&#x8BE2;&#x7684;&#x662F;&#x63D0;&#x4EA4;&#x6B21;&#x6570;&#xFF0C;-p&#x662F;&#x5C55;&#x5F00;&#x663E;&#x793A;&#x6BCF;&#x6B21;&#x63D0;&#x4EA4;&#x7684;&#x5185;&#x5BB9;&#x5DEE;&#x5F02;</p>
+<p>git log -U1 --word-diff  // &#x67E5;&#x8BE2;&#x6BCF;&#x6B21;&#x63D0;&#x4EA4;&#x7684;&#x5355;&#x8BCD;&#x5DEE;&#x5F02;</p>
+<p>git log --stat  // &#x663E;&#x793A;&#x6539;&#x52A8;&#x7684;&#x6982;&#x8981;&#x4FE1;&#x606F;</p>
+</li>
+</ul>
+<h2 class="mume-header" id="-%E6%A0%87%E7%AD%BE" ebook-toc-level-2 heading="- &amp;#x6807;&amp;#x7B7E;">- &#x6807;&#x7B7E;</h2>
+
+<ul>
+<li>
+<p>&#x67E5;&#x770B;&#x6807;&#x7B7E;</p>
+<p>git tag</p>
+</li>
+<li>
+<p>&#x521B;&#x5EFA;&#x6807;&#x7B7E;</p>
+<p>git tag content  // content&#x586B;&#x5199;&#x6807;&#x7B7E;&#x5185;&#x5BB9;</p>
+</li>
+<li>
+<p>&#x5220;&#x9664;&#x672C;&#x5730;&#x6807;&#x7B7E;</p>
+<p>git tag -d content</p>
+</li>
+<li>
+<p>&#x53D1;&#x5E03;&#x6807;&#x7B7E;</p>
+<p>git push -u origin content</p>
+</li>
+<li>
+<p>&#x5220;&#x9664;&#x8FDC;&#x7A0B;&#x6807;&#x7B7E;</p>
+<p>git push origin --delete tag content</p>
+</li>
+</ul>
+<h1 class="mume-header" id="%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C" ebook-toc-level-1 heading="&amp;#x8FDC;&amp;#x7A0B;&amp;#x64CD;&amp;#x4F5C;">&#x8FDC;&#x7A0B;&#x64CD;&#x4F5C;</h1>
+
+<ul>
+<li>
+<p>&#x67E5;&#x770B;&#x4ED3;&#x5E93;&#x4FE1;&#x606F;</p>
+<p>git remote</p>
+</li>
+<li>
+<p>&#x514B;&#x9686;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x5230;&#x672C;&#x5730;</p>
+<p>git clone [url]  // [url]&#x4ECE;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x83B7;&#x53D6;</p>
+</li>
+<li>
+<p>&#x6DFB;&#x52A0;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</p>
+<p>git remote add [name] [url]</p>
+</li>
+<li>
+<p>&#x5C06;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x5206;&#x652F;&#x6DFB;&#x52A0;&#x5230;&#x672C;&#x5730;</p>
+<p>git fetch origin mbranchname</p>
+</li>
+<li>
+<p>&#x66F4;&#x65B0;&#x5206;&#x652F;</p>
+<p>git pull  // &#x66F4;&#x65B0;&#x5F53;&#x524D;&#x5206;&#x652F;<br>
+git pull branchname master  // &#x83B7;&#x53D6;&#x5E76;&#x5408;&#x5E76;&#x8FDC;&#x7A0B;&#x5206;&#x652F;&#x5230;&#x672C;&#x5730;master&#x5206;&#x652F;<br>
+git pull origin branchname  // &#x5C06;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x5206;&#x652F;&#x62C9;&#x53D6;&#x5230;&#x672C;&#x5730;</p>
+</li>
+<li>
+<p>&#x63A8;&#x9001;&#x5206;&#x652F;</p>
+<p>git push  // &#x5411;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x63A8;&#x9001;&#x5F53;&#x524D;&#x5206;&#x652F;<br>
+git push -f ...  // &#x5F3A;&#x5236;&#x63A8;&#x9001;<br>
+git push branchname master  // &#x5411;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x63A8;&#x9001;master&#x5206;&#x652F;<br>
+git push origin branchname  // &#x5C06;&#x672C;&#x5730;&#x4ED3;&#x5E93;&#x63D0;&#x4EA4;&#x5230;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;<br>
+git push -u origin branchname  // &#x7B2C;&#x4E00;&#x6B21;&#x63A8;&#x9001;&#x65F6;&#x9700;&#x8981; -u &#x53C2;&#x6570;</p>
+</li>
+<li>
+<p>&#x5408;&#x5E76;&#x5206;&#x652F;</p>
+<p>git merge fork  // &#x5C06;fork&#x5206;&#x652F;&#x5408;&#x5E76;&#x5230;&#x5F53;&#x524D;&#x5206;&#x652F;<br>
+git checkout fork a.c b.c  // &#x5C06;fork&#x5206;&#x652F;&#x7684;a.c b.c&#x6587;&#x4EF6;&#x5F3A;&#x5236;&#x8986;&#x76D6;&#x5F53;&#x524D;&#x5206;&#x652F;&#x7684;&#x5BF9;&#x5E94;&#x6587;&#x4EF6;<br>
+git merge origin branchname  // &#x5C06;&#x672C;&#x5730;&#x5206;&#x652F;&#x4E0E;&#x8FDC;&#x7A0B;&#x5206;&#x652F;&#x5408;&#x5E76;<br>
+git mergetool  // &#x4F7F;&#x7528;&#x5DE5;&#x5177;&#x6BD4;&#x8F83;&#x67E5;&#x770B;&#x51B2;&#x7A81;</p>
+</li>
+<li>
+<p>&#x5C06;&#x6700;&#x8FD1;&#x4E24;&#x6B21;&#x63D0;&#x4EA4;&#x5408;&#x5E76;&#x4E3A;&#x4E00;&#x4E2A;&#x63D0;&#x4EA4;&#xFF0C;&#x5E76;&#x5F3A;&#x5236;&#x63D0;&#x4EA4;&#x5230;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</p>
+<p>git reset --soft HEAD<br>
+git commit -m &quot;...&quot;<br>
+git push --force</p>
+</li>
+<li>
+<p><em>&#x5B9E;&#x4F8B;</em><br><font color="#0E6DB0">&#x5C06;&#x5171;&#x4EAB;&#x5E93;&#x6DFB;&#x52A0;&#x5230;&#x81EA;&#x5DF1;&#x7684;&#x4ED3;&#x5E93;&#x5E76;&#x62C9;&#x5230;&#x672C;&#x5730;</font></p>
+<p>git remote add gitignore <a href="https://github.com/github/gitignore">https://github.com/github/gitignore</a><br>
+git pull origin gitignore</p>
+</li>
+</ul>
+</div></body></html>
+    </div>
+  </body>
+</html>
