@@ -8610,7 +8610,14 @@
         "verisign.com": 1,
         "feng.com": 1,
         "scorecardresearch.com": 1,
-        "evernote.com": 1
+        "evernote.com": 1,
+        "live.com": 1,
+        "live.net": 1,
+        "office.com": 1,
+        "office.net": 1,
+        "officeapps.live.com": 1,
+        "docs.live.net": 1,
+        "github.com": 1,
     };
 
     var dangerDomains = {
@@ -10905,7 +10912,6 @@
       "dabr.mobi": 1,
       "catch22.net": 1,
       "digitalnomadsproject.org": 1,
-      "github.com": 1,
       "blogspot.de": 1,
       "pcdvd.com.tw": 1,
       "getyouram.com": 1,
@@ -11052,15 +11058,6 @@
       "1-apple.com.tw": 1
     };
 
-    var myDomains = {
-      "live.com": 1,
-      "live.net": 1,
-      "office.com": 1,
-      "office.net": 1,
-      "officeapps.live.com": 1,
-      "docs.live.net": 1
-    };
-
    // safePorts must in order for matching
     var safePorts = [
         3478,
@@ -11172,9 +11169,6 @@
     }
 
     if (hostindomains(safeDomains, host))
-        return iproxy;
-
-    if (hostindomains(myDomains, host))
         return iproxy;
 
     if (hostindomains(dangerDomains, host))
