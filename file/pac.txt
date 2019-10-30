@@ -11167,14 +11167,14 @@
     };
     function FindProxyForURL(url, host) {
 
-    if (hostindomains(myDomains, host))
-        return iproxy;
-
     if (shExpMatch(host, "*.cn")) {
         return iproxy; // arg iproxy
     }
 
     if (hostindomains(safeDomains, host))
+        return iproxy;
+
+    if (hostindomains(myDomains, host))
         return iproxy;
 
     if (hostindomains(dangerDomains, host))
