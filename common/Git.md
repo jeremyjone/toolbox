@@ -1,4 +1,6 @@
-# GIT命令
+<h1>GIT命令</h1>
+
+[TOC]
 
 ## 安装
 
@@ -351,6 +353,14 @@
 
     ```shell
     git clone [url]  // [url]从远程仓库获取
+    ```
+
+- 拉取所有远程分支到本地
+
+    ```shell
+    git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
+    git fetch --all
+    git pull --all
     ```
 
 - 添加远程仓库
