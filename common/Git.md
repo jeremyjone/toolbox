@@ -162,7 +162,7 @@ git --version
   git log --pretty=oneline  // 将每个提交记录放在一行显示，其它参数：oneline、short、full、fuller等
   ```
 
-  ##### 通过日志我们可以查询很多需要的数据
+  **通过日志我们可以查询很多需要的数据**
 
   - 统计提交的行数
 
@@ -206,14 +206,12 @@ git --version
   git log --pretty='%aN' | sort | uniq -c | sort -k1 -n -r | head -n 5
   ```
 
-* 删除某个提交
+- 删除某个提交
 
   ```shell
   git log  // 获取提交信息
   git rebase -i (commit-id)  // commit-id 为提交版本的hash code
   ```
-
-````
 
 **注意：** 这里有个坑，commit-id 是需要删除的前一个 hash code，用图说明：
 
@@ -464,4 +462,7 @@ git --version
   git remote add gitignore https://github.com/github/gitignore
   git pull origin gitignore
   ```
-````
+
+```
+
+```
