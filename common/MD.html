@@ -1,0 +1,872 @@
+<!DOCTYPE html><html><head>
+      <title>MD</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.7.0/flowchart.min.js"></script>
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <div><h1>Markdown&#x8BED;&#x6CD5;</h1>
+<ul>
+<li><a href="#%E6%A0%87%E9%A2%98">&#x6807;&#x9898;</a>
+<ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">&#x76EE;&#x5F55;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AD%97%E4%BD%93">&#x5B57;&#x4F53;</a>
+<ul>
+<li><a href="#%E5%8A%A0%E7%B2%97">&#x52A0;&#x7C97;</a></li>
+<li><a href="#%E6%96%9C%E4%BD%93">&#x659C;&#x4F53;</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E7%BA%BF">&#x5220;&#x9664;&#x7EBF;</a></li>
+</ul>
+</li>
+<li><a href="#%E9%93%BE%E6%8E%A5">&#x94FE;&#x63A5;</a>
+<ul>
+<li><a href="#%E6%96%87%E5%AD%97%E9%93%BE%E6%8E%A5">&#x6587;&#x5B57;&#x94FE;&#x63A5;</a>
+<ul>
+<li><a href="#%E5%86%85%E9%93%BE%E6%8E%A5">&#x5185;&#x94FE;&#x63A5;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5">&#x56FE;&#x7247;&#x94FE;&#x63A5;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%86%E5%89%B2%E7%BA%BF">&#x5206;&#x5272;&#x7EBF;</a></li>
+<li><a href="#%E6%B3%A8%E8%84%9A">&#x6CE8;&#x811A;</a></li>
+<li><a href="#%E5%BC%95%E7%94%A8">&#x5F15;&#x7528;</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81">&#x4EE3;&#x7801;</a>
+<ul>
+<li><a href="#%E8%A1%8C%E5%86%85%E4%BB%A3%E7%A0%81%E5%9D%97">&#x884C;&#x5185;&#x4EE3;&#x7801;&#x5757;</a>
+<ul>
+<li><a href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F">&#x7279;&#x6B8A;&#x5B57;&#x7B26;&#x7684;&#x5904;&#x7406;&#x65B9;&#x5F0F;</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%9D%97">&#x4EE3;&#x7801;&#x5757;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%97%E8%A1%A8">&#x5217;&#x8868;</a>
+<ul>
+<li><a href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8">&#x65E0;&#x5E8F;&#x5217;&#x8868;</a></li>
+<li><a href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8">&#x6709;&#x5E8F;&#x5217;&#x8868;</a></li>
+<li><a href="#todo-%E5%88%97%E8%A1%A8">Todo &#x5217;&#x8868;</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A1%A8%E6%A0%BC">&#x8868;&#x683C;</a>
+<ul>
+<li><a href="#%E5%88%A9%E7%94%A8-html-%E7%BB%98%E5%88%B6%E6%9B%B4%E4%B8%BA%E5%A4%8D%E6%9D%82%E7%9A%84%E8%A1%A8%E6%A0%BC">&#x5229;&#x7528; HTML &#x7ED8;&#x5236;&#x66F4;&#x4E3A;&#x590D;&#x6742;&#x7684;&#x8868;&#x683C;</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%98%E5%9B%BE">&#x7ED8;&#x56FE;</a>
+<ul>
+<li><a href="#%E6%B5%81%E7%A8%8B%E5%9B%BE">&#x6D41;&#x7A0B;&#x56FE;</a></li>
+<li><a href="#%E5%BA%8F%E5%88%97%E5%9B%BE">&#x5E8F;&#x5217;&#x56FE;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AC%E5%BC%8F">&#x516C;&#x5F0F;</a></li>
+</ul>
+<h2 class="mume-header" id="%E6%A0%87%E9%A2%98">&#x6807;&#x9898;</h2>
+
+<p>&#x4F7F;&#x7528; <code>#</code> &#x8BBE;&#x7F6E;&#x6807;&#x9898;&#x3002;<br>
+&#x652F;&#x6301; 1-6 &#x7EA7;&#x6807;&#x9898;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5BF9;&#x5E94;&#x6570;&#x91CF;&#x7684; <code>#</code> &#x5373;&#x53EF;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x7B2C;&#x4E00;&#x7EA7;&#x548C;&#x7B2C;&#x4E8C;&#x7EA7;&#x6807;&#x9898;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>===</code> &#x548C; <code>---</code> &#x7684;&#x65B9;&#x5F0F;&#x6765;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> &#x4E00;&#x7EA7;&#x6807;&#x9898;</span>
+
+<span class="token title important">&#x4E00;&#x7EA7;&#x6807;&#x9898;
+<span class="token punctuation">===</span></span>
+
+<span class="token title important">&#x4E8C;&#x7EA7;&#x6807;&#x9898;
+<span class="token punctuation">---</span></span>
+
+<span class="token title important"><span class="token punctuation">##</span> &#x4E8C;&#x7EA7;&#x6807;&#x9898;</span>
+
+...
+
+<span class="token title important"><span class="token punctuation">######</span> &#x516D;&#x7EA7;&#x6807;&#x9898;</span>
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<blockquote>
+<h1>&#x4E00;&#x7EA7;&#x6807;&#x9898;</h1>
+<h1>&#x4E00;&#x7EA7;&#x6807;&#x9898;</h1>
+<h2>&#x4E8C;&#x7EA7;&#x6807;&#x9898;</h2>
+<h2>&#x4E8C;&#x7EA7;&#x6807;&#x9898;</h2>
+<h3>&#x4E09;&#x7EA7;&#x6807;&#x9898;</h3>
+<h4>&#x56DB;&#x7EA7;&#x6807;&#x9898;</h4>
+<h5>&#x4E94;&#x7EA7;&#x6807;&#x9898;</h5>
+<h6>&#x516D;&#x7EA7;&#x6807;&#x9898;</h6>
+</blockquote>
+<h3 class="mume-header" id="%E7%9B%AE%E5%BD%95">&#x76EE;&#x5F55;</h3>
+
+<p>&#x4F7F;&#x7528; <code>[TOC]</code>&#xFF0C;markdown&#x4F1A;&#x6839;&#x636E;&#x6807;&#x9898;&#x751F;&#x6210;&#x76EE;&#x5F55;&#xFF0C;&#x5E76;&#x6839;&#x636E;&#x76EE;&#x5F55;&#x7EA7;&#x522B;&#xFF0C;&#x81EA;&#x52A8;&#x5212;&#x5206;&#x5C42;&#x7EA7;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">[TOC]
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<ul>
+<li><a href="#%E6%A0%87%E9%A2%98">&#x6807;&#x9898;</a>
+<ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">&#x76EE;&#x5F55;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AD%97%E4%BD%93">&#x5B57;&#x4F53;</a>
+<ul>
+<li><a href="#%E5%8A%A0%E7%B2%97">&#x52A0;&#x7C97;</a></li>
+<li><a href="#%E6%96%9C%E4%BD%93">&#x659C;&#x4F53;</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E7%BA%BF">&#x5220;&#x9664;&#x7EBF;</a></li>
+</ul>
+</li>
+<li><a href="#%E9%93%BE%E6%8E%A5">&#x94FE;&#x63A5;</a>
+<ul>
+<li><a href="#%E6%96%87%E5%AD%97%E9%93%BE%E6%8E%A5">&#x6587;&#x5B57;&#x94FE;&#x63A5;</a>
+<ul>
+<li><a href="#%E5%86%85%E9%93%BE%E6%8E%A5">&#x5185;&#x94FE;&#x63A5;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5">&#x56FE;&#x7247;&#x94FE;&#x63A5;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%86%E5%89%B2%E7%BA%BF">&#x5206;&#x5272;&#x7EBF;</a></li>
+<li><a href="#%E6%B3%A8%E8%84%9A">&#x6CE8;&#x811A;</a></li>
+<li><a href="#%E5%BC%95%E7%94%A8">&#x5F15;&#x7528;</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81">&#x4EE3;&#x7801;</a>
+<ul>
+<li><a href="#%E8%A1%8C%E5%86%85%E4%BB%A3%E7%A0%81%E5%9D%97">&#x884C;&#x5185;&#x4EE3;&#x7801;&#x5757;</a>
+<ul>
+<li><a href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F">&#x7279;&#x6B8A;&#x5B57;&#x7B26;&#x7684;&#x5904;&#x7406;&#x65B9;&#x5F0F;</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%9D%97">&#x4EE3;&#x7801;&#x5757;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%97%E8%A1%A8">&#x5217;&#x8868;</a>
+<ul>
+<li><a href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8">&#x65E0;&#x5E8F;&#x5217;&#x8868;</a></li>
+<li><a href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8">&#x6709;&#x5E8F;&#x5217;&#x8868;</a></li>
+<li><a href="#todo-%E5%88%97%E8%A1%A8">Todo &#x5217;&#x8868;</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A1%A8%E6%A0%BC">&#x8868;&#x683C;</a>
+<ul>
+<li><a href="#%E5%88%A9%E7%94%A8-html-%E7%BB%98%E5%88%B6%E6%9B%B4%E4%B8%BA%E5%A4%8D%E6%9D%82%E7%9A%84%E8%A1%A8%E6%A0%BC">&#x5229;&#x7528; HTML &#x7ED8;&#x5236;&#x66F4;&#x4E3A;&#x590D;&#x6742;&#x7684;&#x8868;&#x683C;</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%98%E5%9B%BE">&#x7ED8;&#x56FE;</a>
+<ul>
+<li><a href="#%E6%B5%81%E7%A8%8B%E5%9B%BE">&#x6D41;&#x7A0B;&#x56FE;</a></li>
+<li><a href="#%E5%BA%8F%E5%88%97%E5%9B%BE">&#x5E8F;&#x5217;&#x56FE;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AC%E5%BC%8F">&#x516C;&#x5F0F;</a></li>
+</ul>
+<div style="background-color: rgba(255,229,100,.3);border-color: #e7c000;color: #6b5900;padding: .1rem 1.5rem;border-left-width: .5rem;border-left-style: solid;margin: 1rem 0;"><p style="line-height: 1.7;font-weight: 600;margin-bottom: -.4rem;display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;color: #b29400;">&#x6CE8;&#x610F;</p><p style="line-height: 1.7;display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;color: #6b5900;">&#x6709;&#x4E9B;&#x7F16;&#x8F91;&#x5668;&#x6216;&#x7F51;&#x7AD9;&#x662F;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x5C3D;&#x91CF;&#x4F7F;&#x7528;&#x5927;&#x5199;&#x683C;&#x5F0F;&#x6765;&#x751F;&#x6210;&#x76EE;&#x5F55;&#x3002;</p></div>
+<h2 class="mume-header" id="%E5%AD%97%E4%BD%93">&#x5B57;&#x4F53;</h2>
+
+<h3 class="mume-header" id="%E5%8A%A0%E7%B2%97">&#x52A0;&#x7C97;</h3>
+
+<p>&#x4F7F;&#x7528; <code>**</code> &#x5C06;&#x9700;&#x8981;&#x52A0;&#x7C97;&#x7684;&#x6587;&#x5B57;&#x5305;&#x88F9;&#x8D77;&#x6765;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">&#x8FD9;&#x6BB5;&#x6587;&#x5B57;&#xFF0C;<span class="token bold"><span class="token punctuation">**</span>&#x8FD9;&#x91CC;<span class="token punctuation">**</span></span>&#x9700;&#x8981;&#x52A0;&#x7C97;
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<blockquote>
+<p>&#x8FD9;&#x6BB5;&#x6587;&#x5B57;&#xFF0C;<strong>&#x8FD9;&#x91CC;</strong>&#x9700;&#x8981;&#x52A0;&#x7C97;</p>
+</blockquote>
+<h3 class="mume-header" id="%E6%96%9C%E4%BD%93">&#x659C;&#x4F53;</h3>
+
+<p>&#x4F7F;&#x7528; <code>*</code> &#x5C06;&#x9700;&#x8981;&#x659C;&#x4F53;&#x7684;&#x6587;&#x5B57;&#x5305;&#x88F9;&#x8D77;&#x6765;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">&#x8FD9;&#x6BB5;&#x6587;&#x5B57;&#xFF0C;<span class="token italic"><span class="token punctuation">*</span>&#x8FD9;&#x91CC;<span class="token punctuation">*</span></span>&#x9700;&#x8981;&#x659C;&#x4F53;
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<blockquote>
+<p>&#x8FD9;&#x6BB5;&#x6587;&#x5B57;&#xFF0C;<em>&#x8FD9;&#x91CC;</em>&#x9700;&#x8981;&#x659C;&#x4F53;</p>
+</blockquote>
+<div style="background-color: #f3f5f7;border-color: #42b983;padding: .1rem 1.5rem;border-left-width: .5rem;border-left-style: solid;margin: 1rem 0;"><p style="line-height: 1.7;font-weight: 600;margin-bottom: -.4rem;display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;">&#x63D0;&#x793A;</p><p style="line-height: 1.7;display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;">&#x5982;&#x679C;&#x9700;&#x8981;&#x52A0;&#x7C97;&#x7684;&#x659C;&#x4F53;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; *** &#x5B9E;&#x73B0;&#x3002;</p></div>
+<h3 class="mume-header" id="%E5%88%A0%E9%99%A4%E7%BA%BF">&#x5220;&#x9664;&#x7EBF;</h3>
+
+<p>&#x4F7F;&#x7528; <code>~~</code> &#x5C06;&#x9700;&#x8981;&#x663E;&#x793A;&#x5220;&#x9664;&#x7EBF;&#x7684;&#x6587;&#x5B57;&#x5305;&#x88F9;&#x8D77;&#x6765;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">&#x8FD9;&#x6BB5;&#x6587;&#x5B57;&#xFF0C;<span class="token strike"><span class="token punctuation">~~</span>&#x8FD9;&#x91CC;<span class="token punctuation">~~</span></span>&#x9700;&#x8981;&#x5220;&#x9664;&#x7EBF;
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<blockquote>
+<p>&#x8FD9;&#x6BB5;&#x6587;&#x5B57;&#xFF0C;<s>&#x8FD9;&#x91CC;</s>&#x9700;&#x8981;&#x5220;&#x9664;&#x7EBF;</p>
+</blockquote>
+<h2 class="mume-header" id="%E9%93%BE%E6%8E%A5">&#x94FE;&#x63A5;</h2>
+
+<h3 class="mume-header" id="%E6%96%87%E5%AD%97%E9%93%BE%E6%8E%A5">&#x6587;&#x5B57;&#x94FE;&#x63A5;</h3>
+
+<p>&#x4F7F;&#x7528; <code>[&#x63CF;&#x8FF0;](&#x5730;&#x5740;)</code> &#x7684;&#x65B9;&#x5F0F;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x94FE;&#x63A5;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown"><span class="token url">[&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x94FE;&#x63A5;](https://www.jeremyjone.com)</span>
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<blockquote>
+<p><a href="https://www.jeremyjone.com">&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x94FE;&#x63A5;</a></p>
+</blockquote>
+<h4 class="mume-header" id="%E5%86%85%E9%93%BE%E6%8E%A5">&#x5185;&#x94FE;&#x63A5;</h4>
+
+<p>&#x6709;&#x65F6;&#x5019;&#xFF0C;&#x6587;&#x4EF6;&#x5185;&#x9700;&#x8981;&#x8DF3;&#x8F6C;&#x5230;&#x6307;&#x5B9A;&#x76EE;&#x5F55;&#x4F4D;&#x7F6E;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x94FE;&#x63A5;&#x8FDB;&#x884C;&#x8DF3;&#x8F6C;&#x3002;</p>
+<p>&#x94FE;&#x63A5;&#x90E8;&#x5206;&#x4F7F;&#x7528; <code>#</code> + &#x76EE;&#x5F55;&#x540D; &#x6765;&#x5B9E;&#x73B0;&#x8DF3;&#x8F6C;&#xFF0C;&#x4E0D;&#x8BBA;&#x51E0;&#x7EA7;&#x76EE;&#x5F55;&#xFF0C;&#x90FD;&#x8FD9;&#x6837;&#x5199;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x76EE;&#x5F55;&#x4E2D;&#x7684;&#x540D;&#x79F0;&#x4E0D;&#x5E94;&#x8BE5;&#x6709;&#x91CD;&#x590D;&#xFF0C;&#x8FD9;&#x6837;&#x4F1A;&#x5F15;&#x8D77;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x5947;&#x5F02;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">&#x8DF3;&#x8F6C;&#x5230; <span class="token url">[&#x76EE;&#x5F55;](#&#x76EE;&#x5F55;)</span>
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<p>&#x8DF3;&#x8F6C;&#x5230; <a href="#%E7%9B%AE%E5%BD%95">&#x76EE;&#x5F55;</a></p>
+<h3 class="mume-header" id="%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5">&#x56FE;&#x7247;&#x94FE;&#x63A5;</h3>
+
+<p>&#x4F7F;&#x7528; <code>![alt](&#x56FE;&#x7247;&#x5730;&#x5740;)</code> &#x7684;&#x65B9;&#x5F0F;&#x53EF;&#x4EE5;&#x5173;&#x8054;&#x5E76;&#x5C55;&#x793A;&#x4E00;&#x5F20;&#x56FE;&#x7247;&#xFF0C;&#x8FD9;&#x9002;&#x7528;&#x4E8E;&#x672C;&#x5730;&#x548C;&#x8FDC;&#x7A0B;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown"><span class="token url">![&#x793A;&#x4F8B;&#x56FE;&#x7247;](https://desktop.jeremyjone.com/test/images/01.jpg)</span>
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<blockquote>
+<p><img src="https://desktop.jeremyjone.com/test/images/01.jpg" alt="&#x793A;&#x4F8B;&#x56FE;&#x7247;"></p>
+</blockquote>
+<h2 class="mume-header" id="%E5%88%86%E5%89%B2%E7%BA%BF">&#x5206;&#x5272;&#x7EBF;</h2>
+
+<p>&#x4F7F;&#x7528; <code>***</code> &#x6216;&#x8005; <code>---</code> &#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5206;&#x5272;&#x7EBF;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown"><span class="token hr punctuation">***</span>
+
+<span class="token hr punctuation">---</span>
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<blockquote>
+<p>&#xA0;</p>
+<hr>
+<hr>
+<p>&#xA0;</p>
+</blockquote>
+<h2 class="mume-header" id="%E6%B3%A8%E8%84%9A">&#x6CE8;&#x811A;</h2>
+
+<p>&#x6CE8;&#x811A;&#x901A;&#x5E38;&#x7528;&#x4E8E;&#x89E3;&#x91CA;&#x67D0;&#x4E9B;&#x5185;&#x5BB9;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E66;&#x672C;&#x4E2D;&#x7684;&#x6CE8;&#x91CA;&#x3001;&#x8BE6;&#x89E3;&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>[^keyword]</code> &#x7684;&#x65B9;&#x5F0F;&#x6DFB;&#x52A0;&#x6CE8;&#x811A;&#x540D;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x6587;&#x672C;&#x7684;&#x4EFB;&#x610F;&#x4F4D;&#x7F6E;&#xFF08;&#x901A;&#x5E38;&#x5728;&#x6700;&#x4E0B;&#x65B9;&#xFF09;&#x6DFB;&#x52A0;&#x6CE8;&#x811A;&#x5185;&#x5BB9;&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x6CE8;&#x811A;&#x7684;&#x5185;&#x5BB9;&#x6C38;&#x8FDC;&#x663E;&#x793A;&#x5728;&#x6700;&#x4E0B;&#x65B9;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">&#x8FD9;&#x662F;&#x4E00;&#x6BB5;Markdown[^1]&#x6587;&#x672C;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8F6C;&#x4E3A;HTML[^2]&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x63D2;&#x4EF6;[^script]&#x5B9E;&#x73B0;&#x66F4;&#x4E30;&#x5BCC;&#x7684;&#x529F;&#x80FD;&#x3002;
+
+<span class="token url-reference url"><span class="token punctuation">[</span><span class="token variable">^1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> Markdown&#x662F;&#x4E00;&#x79CD;&#x6587;&#x672C;&#x6807;&#x8BB0;&#x8BED;&#x8A00;&#x3002;</span>
+<span class="token url-reference url"><span class="token punctuation">[</span><span class="token variable">^2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> HTML&#x662F;&#x4E00;&#x79CD;&#x8D85;&#x6587;&#x672C;&#x6807;&#x8BB0;&#x8BED;&#x8A00;&#x3002;</span>
+<span class="token url-reference url"><span class="token punctuation">[</span><span class="token variable">^script</span><span class="token punctuation">]</span><span class="token punctuation">:</span> &#x7528;&#x4E8E;markdown&#x7684;&#x63D2;&#x4EF6;&#x3002;</span>
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<p>&#x8FD9;&#x662F;&#x4E00;&#x6BB5;Markdown<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>&#x6587;&#x672C;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8F6C;&#x4E3A;HTML<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x63D2;&#x4EF6;<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>&#x5B9E;&#x73B0;&#x66F4;&#x4E30;&#x5BCC;&#x7684;&#x529F;&#x80FD;&#x3002;</p>
+<h2 class="mume-header" id="%E5%BC%95%E7%94%A8">&#x5F15;&#x7528;</h2>
+
+<p>&#x4F7F;&#x7528; <code>&gt;</code> &#x5B9E;&#x73B0;&#x5F15;&#x7528;&#xFF0C;&#x591A;&#x4E2A; <code>&gt;</code> &#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x591A;&#x7EA7;&#x5F15;&#x7528;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown"><span class="token blockquote punctuation">&gt;</span> &#x4E00;&#x7EA7;&#x5F15;&#x7528;
+<span class="token blockquote punctuation">&gt;&gt;</span> &#x4E8C;&#x7EA7;&#x5F15;&#x7528;
+<span class="token blockquote punctuation">&gt;&gt;&gt;</span> &#x4E09;&#x7EA7;&#x5F15;&#x7528;
+...
+<span class="token blockquote punctuation">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> n&#x7EA7;&#x5F15;&#x7528;
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<blockquote>
+<p>&#x4E00;&#x7EA7;&#x5F15;&#x7528;</p>
+<blockquote>
+<p>&#x4E8C;&#x7EA7;&#x5F15;&#x7528;</p>
+<blockquote>
+<p>&#x4E09;&#x7EA7;&#x5F15;&#x7528;</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>n&#x7EA7;&#x5F15;&#x7528;</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 class="mume-header" id="%E4%BB%A3%E7%A0%81">&#x4EE3;&#x7801;</h2>
+
+<p>&#x4EE3;&#x7801;&#x5185;&#x5BB9;&#x662F;&#x7A0B;&#x5E8F;&#x5458;&#x5FC5;&#x5907;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x53EF;&#x4EE5;&#x7A81;&#x51FA;&#x4E00;&#x4E9B;&#x91CD;&#x70B9;&#x5185;&#x5BB9;&#x3002;</p>
+<h3 class="mume-header" id="%E8%A1%8C%E5%86%85%E4%BB%A3%E7%A0%81%E5%9D%97">&#x884C;&#x5185;&#x4EE3;&#x7801;&#x5757;</h3>
+
+<p>&#x901A;&#x8FC7; <code>`</code> &#x53EF;&#x4EE5;&#x5C06;&#x4F60;&#x5E0C;&#x671B;&#x7684;&#x4EE3;&#x7801;&#x5185;&#x5BB9;&#x6216;&#x8005;&#x91CD;&#x70B9;&#x5185;&#x5BB9;&#x5305;&#x88F9;&#x8D77;&#x6765;&#xFF0C;&#x50CF;&#x8FD9;&#x6837;&#xFF1A;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">&#x8FD9;&#x662F;&#x4E00;&#x7BC7; <span class="token code keyword">`markdown`</span> &#x6587;&#x6863;&#x3002;
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<blockquote>
+<p>&#x8FD9;&#x662F;&#x4E00;&#x7BC7; <code>markdown</code> &#x6587;&#x6863;&#x3002;</p>
+</blockquote>
+<h4 class="mume-header" id="%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F">&#x7279;&#x6B8A;&#x5B57;&#x7B26;&#x7684;&#x5904;&#x7406;&#x65B9;&#x5F0F;</h4>
+
+<p>&#x5982;&#x679C;&#x4F60;&#x5E0C;&#x671B;&#x7684;&#x5185;&#x5BB9;&#x4E2D;&#x5982;&#x679C;&#x5305;&#x542B; <code>`</code>&#xFF0C;&#x8FD9;&#x5C31;&#x6BD4;&#x8F83;&#x68D8;&#x624B;&#x4E86;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x5BF9;&#x4E8E;markdown&#x5F88;&#x7B80;&#x5355;&#x3002;&#x4F7F;&#x7528; <code>``</code> &#x6765;&#x5305;&#x88F9;&#x5305;&#x542B; <code>`</code>&#x7684;&#x5185;&#x5BB9;&#x5373;&#x53EF;&#x3002;&#x540C;&#x6837;&#x7684;&#xFF0C;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>`</code> &#x6765;&#x5305;&#x88F9;&#x5177;&#x6709; <code>``</code>&#x7684;&#x5185;&#x5BB9;&#x3002;&#x770B;&#x4E0A;&#x53BB;&#x5B83;&#x66F4;&#x50CF;&#x662F;&#x4E00;&#x6BB5;&#x7ED5;&#x53E3;&#x4EE4;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x5BF9;<code>python</code>&#x719F;&#x6089;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x6837;&#x7684;&#x65B9;&#x5F0F;&#x5E94;&#x8BE5;&#x5E76;&#x4E0D;&#x964C;&#x751F;&#xFF0C;&#x5B83;&#x548C;<code>python</code>&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x7C7B;&#x4F3C;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">&#x5982;&#x4F55;&#x4F7F;&#x7528; <span class="token code keyword">`markdown`</span> &#x5C06; <span class="token code keyword">`` ` ``</span> &#x5305;&#x88F9;&#x5230;&#x884C;&#x5185;&#x5757;&#xFF1F;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x4F7F;&#x7528; <span class="token code keyword">` `</span><span class="token code keyword">` `</span>&#x7684;&#x65B9;&#x5F0F;&#x5373;&#x53EF;&#x3002;
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<blockquote>
+<p>&#x5982;&#x4F55;&#x4F7F;&#x7528; <code>markdown</code> &#x5C06; <code>`</code> &#x5305;&#x88F9;&#x5230;&#x884C;&#x5185;&#x5757;&#xFF1F;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x4F7F;&#x7528; <code>``</code>&#x7684;&#x65B9;&#x5F0F;&#x5373;&#x53EF;&#x3002;</p>
+</blockquote>
+<div style="background-color: #f3f5f7;border-color: #42b983;padding: .1rem 1.5rem;border-left-width: .5rem;border-left-style: solid;margin: 1rem 0;"><p style="line-height: 1.7;font-weight: 600;margin-bottom: -.4rem;display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;">&#x63D0;&#x793A;</p><p style="line-height: 1.7;display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;">`` &#x548C; ` &#x672C;&#x8EAB;&#x7684;&#x529F;&#x80FD;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x5B83;&#x4EEC;&#x90FD;&#x53EF;&#x4EE5;&#x5305;&#x88F9;&#x4EFB;&#x610F;&#x5185;&#x5BB9;&#xFF0C;&#x533A;&#x522B;&#x662F;&#x5B83;&#x4EEC;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x5BF9;&#x65B9;&#x3002;</p></div>
+<h3 class="mume-header" id="%E4%BB%A3%E7%A0%81%E5%9D%97">&#x4EE3;&#x7801;&#x5757;</h3>
+
+<p>&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x6BD4;&#x8F83;&#x5355;&#x72EC;&#x7684;&#x533A;&#x57DF;&#xFF0C;&#x901A;&#x8FC7; <code>```</code>&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x4EE3;&#x7801;&#x533A;&#x57DF;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x5728; <code>```</code> &#x540E;&#x9762;&#x8DDF;&#x4E0A;&#x8BED;&#x8A00;&#x540D;&#x79F0;&#xFF0C;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x5BF9;&#x5E94;&#x7684;&#x4EE3;&#x7801;&#x89C4;&#x5219;&#xFF0C;&#x9AD8;&#x4EAE;&#x4EE3;&#x7801;&#x5185;&#x5BB9;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown"> ``` js
+<span class="token code keyword">     function() {</span>
+<span class="token code keyword">         /* content */</span>
+<span class="token code keyword">     }</span>
+ ``` // &#x7ED3;&#x675F;&#x4EE3;&#x7801;&#x5757;
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token comment">/* content */</span>
+<span class="token punctuation">}</span>
+</pre><div style="background-color: #f3f5f7;border-color: #42b983;padding: .1rem 1.5rem;border-left-width: .5rem;border-left-style: solid;margin: 1rem 0;"><p style="line-height: 1.7;font-weight: 600;margin-bottom: -.4rem;display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;">&#x63D0;&#x793A;</p><p style="line-height: 1.7;display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;">markdown&#x652F;&#x6301;&#x7684;&#x8BED;&#x8A00;&#x662F;&#x901A;&#x8FC7;&#x4E0D;&#x540C;&#x63D2;&#x4EF6;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x4E0D;&#x540C;&#x7F16;&#x8F91;&#x5668;&#x3001;&#x7F51;&#x7AD9;&#xFF0C;&#x652F;&#x6301;&#x7684;&#x90FD;&#x4E0D;&#x5C3D;&#x76F8;&#x540C;&#xFF0C;&#x53EF;&#x4EE5;&#x67E5;&#x770B; Prism &#x5B8C;&#x6574;&#x7684;&#x8BED;&#x8A00;&#x5217;&#x8868;&#xFF1A;<a href="https://prismjs.com/#supported-languages" target="_blank">&#x8BED;&#x8A00;&#x5217;&#x8868;</a></p></div>
+<h2 class="mume-header" id="%E5%88%97%E8%A1%A8">&#x5217;&#x8868;</h2>
+
+<p>&#x5217;&#x8868;&#x5206;&#x4E3A;&#x6709;&#x5E8F;&#x548C;&#x65E0;&#x5E8F;&#xFF0C;&#x5B83;&#x4EEC;&#x7684;&#x529F;&#x80FD;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x540C;&#x65F6;&#x5B83;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x6DF7;&#x7528;&#xFF0C;&#x8FD9;&#x5F88;&#x65B9;&#x4FBF;&#x3002;</p>
+<h3 class="mume-header" id="%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8">&#x65E0;&#x5E8F;&#x5217;&#x8868;</h3>
+
+<p>&#x4F7F;&#x7528; <code>-</code> <code>+</code> <code>*</code> &#x7684;&#x4EFB;&#x610F;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x65E0;&#x5E8F;&#x5217;&#x8868;&#xFF0C;&#x5E76;&#x4E14;&#x652F;&#x6301;&#x591A;&#x7EA7;&#x5185;&#x5BB9;&#xFF0C;&#x6BCF;&#x4E00;&#x7EA7;&#x4F7F;&#x7528;&#x81F3;&#x5C11;2&#x4E2A;&#x7A7A;&#x683C;&#x7F29;&#x8FDB;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown"><span class="token list punctuation">-</span> &#x5185;&#x5BB9;1
+<span class="token list punctuation">+</span> &#x5185;&#x5BB9;2
+<span class="token list punctuation">*</span> &#x5185;&#x5BB9;3
+  <span class="token list punctuation">-</span> &#x5B50;&#x5185;&#x5BB9;1
+  <span class="token list punctuation">+</span> &#x5B50;&#x5185;&#x5BB9;2
+  <span class="token list punctuation">*</span> &#x5B50;&#x5185;&#x5BB9;3
+<span class="token code keyword">    - &#x5B50;&#x5185;&#x5BB9;</span>
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<blockquote>
+<ul>
+<li>&#x5185;&#x5BB9;1</li>
+</ul>
+<ul>
+<li>&#x5185;&#x5BB9;2</li>
+</ul>
+<ul>
+<li>&#x5185;&#x5BB9;3
+<ul>
+<li>&#x5B50;&#x5185;&#x5BB9;1</li>
+</ul>
+<ul>
+<li>&#x5B50;&#x5185;&#x5BB9;2</li>
+</ul>
+<ul>
+<li>&#x5B50;&#x5185;&#x5BB9;3
+<ul>
+<li>&#x5B50;&#x5185;&#x5BB9;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 class="mume-header" id="%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8">&#x6709;&#x5E8F;&#x5217;&#x8868;</h3>
+
+<p>&#x6709;&#x5E8F;&#x5217;&#x8868;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x6570;&#x5B57; <code>1.</code>(&#x6570;&#x5B57; + <code>.</code>) &#x7684;&#x65B9;&#x5F0F;&#x6765;&#x663E;&#x5F0F;&#x7684;&#x58F0;&#x660E;&#x3002;&#x591A;&#x7EA7;&#x5185;&#x5BB9;&#x4F7F;&#x7528;&#x81F3;&#x5C11;3&#x4E2A;&#x7A7A;&#x683C;&#x7F29;&#x8FDB;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown"><span class="token list punctuation">1.</span> &#x5185;&#x5BB9;1
+<span class="token list punctuation">2.</span> &#x5185;&#x5BB9;2
+<span class="token list punctuation">3.</span> &#x5185;&#x5BB9;3
+   <span class="token list punctuation">1.</span> &#x5B50;&#x5185;&#x5BB9;1
+   <span class="token list punctuation">2.</span> &#x5B50;&#x5185;&#x5BB9;2
+   <span class="token list punctuation">3.</span> &#x5B50;&#x5185;&#x5BB9;3
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<ol>
+<li>&#x5185;&#x5BB9;1</li>
+<li>&#x5185;&#x5BB9;2</li>
+<li>&#x5185;&#x5BB9;3
+<ol>
+<li>&#x5B50;&#x5185;&#x5BB9;1</li>
+<li>&#x5B50;&#x5185;&#x5BB9;2</li>
+<li>&#x5B50;&#x5185;&#x5BB9;3</li>
+</ol>
+</li>
+</ol>
+<div style="background-color: #f3f5f7;border-color: #42b983;padding: .1rem 1.5rem;border-left-width: .5rem;border-left-style: solid;margin: 1rem 0;"><p style="line-height: 1.7;font-weight: 600;margin-bottom: -.4rem;display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;"><svg t="1592964301338" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2368" data-darkreader-inline-fill="" width="20" height="20"><path d="M612.352 907.776H410.112c-10.752 0-20.48 8.704-20.48 20.48 0 11.264 8.704 20.48 20.48 20.48h202.24c10.752 0 20.48-8.704 20.48-20.48-0.512-11.776-9.216-20.48-20.48-20.48z m-30.72 60.416H440.32c-10.752 0-20.48 8.704-20.48 20.48 0 11.264 8.704 20.48 20.48 20.48h141.824c10.752 0 20.48-8.704 20.48-20.48-0.512-11.776-9.728-20.48-20.992-20.48zM146.944 452.096H66.048c-10.752 0-20.48 8.704-20.48 20.48 0 11.264 8.704 20.48 20.48 20.48h80.896c10.752 0 20.48-8.704 20.48-20.48-0.512-11.264-9.216-20.48-20.48-20.48z m808.96 0h-80.896c-10.752 0-20.48 8.704-20.48 20.48 0 11.264 8.704 20.48 20.48 20.48h80.896c10.752 0 20.48-8.704 20.48-20.48 0-11.264-9.216-20.48-20.48-20.48zM221.696 731.648l-39.424 39.424c-7.68 7.68-7.68 21.504 0 29.184s21.504 7.68 29.184 0l39.424-39.424c7.68-7.68 7.68-21.504 0-29.184-7.168-8.192-19.968-8.192-29.184 0zM809.472 144.896l-39.424 39.424c-7.68 7.68-7.68 21.504 0 29.184s21.504 7.68 29.184 0l39.424-39.424c7.68-7.68 7.68-21.504 0-29.184-8.192-7.68-21.504-7.68-29.184 0zM222.72 214.016c7.68 7.68 21.504 7.68 29.184 0s7.68-21.504 0-29.184l-39.424-39.424c-7.68-7.68-21.504-7.68-29.184 0s-7.68 21.504 0 29.184l39.424 39.424z m576.512 517.632c-7.68-7.68-21.504-7.68-29.184 0s-7.68 21.504 0 29.184l39.424 39.424c7.68 7.68 21.504 7.68 29.184 0s7.68-21.504 0-29.184l-39.424-39.424zM510.976 139.264c10.752 0 20.48-8.704 20.48-20.48V37.888c0-10.752-8.704-20.48-20.48-20.48-11.264 0-20.48 8.704-20.48 20.48v80.896c0 10.752 9.728 20.48 20.48 20.48z m0 39.936C343.04 179.2 207.872 314.368 207.872 482.816c0 108.032 56.32 203.264 141.824 256.512v107.008c0 22.528 18.432 40.448 40.448 40.448h242.688c22.528 0 40.448-18.432 40.448-40.448v-106.496c84.992-53.76 141.824-148.48 141.824-256.512C814.08 314.88 678.912 179.2 510.976 179.2z m140.8 526.336c-11.776 7.168-19.456 20.48-19.456 34.304v107.008h-100.864v-175.104l96.256-95.232c7.168-7.168 7.168-19.456 0-27.136-7.168-7.168-20.48-7.168-27.136 0l-89.088 88.064-89.088-88.064c-7.168-7.168-20.48-7.168-27.136 0-7.168 7.168-7.168 19.456 0 27.136L491.52 671.744v175.104H389.632v-107.008c0-14.336-7.168-26.112-19.456-34.304-76.8-48.64-122.368-131.072-122.368-222.72C247.808 338.432 366.08 220.16 510.976 220.16c144.896 0 263.168 118.272 263.168 263.168 0 90.624-45.568 173.568-122.368 222.208z" fill="#333333" p-id="2369" data-darkreader-inline-fill="" style="--darkreader-inline-fill:#303336;"/><path d="M774.144 482.816c0-144.896-118.272-263.168-263.168-263.168-144.896 0-263.168 118.272-263.168 263.168 0 91.136 45.568 174.08 122.368 222.72 11.776 7.68 19.456 20.48 19.456 34.304v107.008h100.864v-175.104L394.24 576.512c-7.168-7.68-7.168-20.48 0-27.136 7.168-7.168 20.48-7.168 27.136 0l89.088 88.064 89.088-88.064c7.168-7.168 20.48-7.168 27.136 0 7.168 7.68 7.168 20.48 0 27.136l-96.256 95.232v175.104h100.864v-107.008c0-14.336 7.168-27.136 19.456-34.304 77.824-48.64 123.392-131.584 123.392-222.72zM426.496 324.608C379.904 355.84 346.112 402.944 330.24 455.68a24.576 24.576 0 0 1-23.552 17.92c-2.56 0-4.608-0.512-7.168-1.024-13.312-4.096-20.992-17.408-16.896-30.72 18.944-64.512 59.904-120.832 115.712-158.72 11.264-7.68 26.624-4.608 34.304 6.656 8.192 11.776 5.12 27.136-6.144 34.816z" fill="#FFE600" p-id="2370" data-darkreader-inline-fill="" style="--darkreader-inline-fill:#ccb800;"/></svg>&#x5C0F;&#x6280;&#x5DE7;</p><p style="line-height: 1.7;display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;">&#x5176;&#x5B9E;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x6709;&#x5E8F;&#x6587;&#x5B57;&#x6765;&#x5B9A;&#x4E49;&#x5185;&#x5BB9;&#x524D;&#x7684;&#x987A;&#x5E8F;&#x6570;&#x5217;&#xFF0C;&#x5B83;&#x66F4;&#x50CF;&#x662F;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x65E0;&#x5E8F;&#x5217;&#x8868;&#x3002;</p></div>
+<h3 class="mume-header" id="todo-%E5%88%97%E8%A1%A8">Todo &#x5217;&#x8868;</h3>
+
+<p>Todo&#x5217;&#x8868;&#x662F;&#x5E38;&#x7528;&#x7684;&#x4E00;&#x79CD;&#x5F85;&#x529E;&#x4E8B;&#x5B9C;&#x5217;&#x8868;&#xFF0C;markdown&#x901A;&#x8FC7;&#x4F7F;&#x7528; <code>[ ]</code> &#x6216; <code>[x]</code> &#x6765;&#x8868;&#x793A; <strong>&#x672A;&#x5B8C;&#x6210;</strong> &#x6216; <strong>&#x5DF2;&#x5B8C;&#x6210;</strong>&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown"><span class="token list punctuation">-</span> [x] &#x65E9;&#x4E0A;&#x5403;&#x4E00;&#x4E2A;&#x9E21;&#x86CB;
+<span class="token list punctuation">-</span> [ ] &#x4E2D;&#x5348;&#x5B9A;&#x5916;&#x5356;&#x8981;&#x5065;&#x5EB7;
+<span class="token list punctuation">-</span> [ ] &#x665A;&#x4E0A;&#x53BB;&#x8D85;&#x5E02;&#x4E70;&#x65E9;&#x9910;
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked> &#x65E9;&#x4E0A;&#x5403;&#x4E00;&#x4E2A;&#x9E21;&#x86CB;</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> &#x4E2D;&#x5348;&#x5B9A;&#x5916;&#x5356;&#x8981;&#x5065;&#x5EB7;</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> &#x665A;&#x4E0A;&#x53BB;&#x8D85;&#x5E02;&#x4E70;&#x65E9;&#x9910;</li>
+</ul>
+<div style="background-color: rgba(255,229,100,.3);border-color: #e7c000;color: #6b5900;padding: .1rem 1.5rem;border-left-width: .5rem;border-left-style: solid;margin: 1rem 0;"><p style="line-height: 1.7;font-weight: 600;margin-bottom: -.4rem;display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;color: #b29400;">&#x6CE8;&#x610F;</p><p style="line-height: 1.7;display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;color: #6b5900;">&#x5B83;&#x672C;&#x8D28;&#x4E0A;&#x662F;&#x4E00;&#x4E2A;&#x5217;&#x8868;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x8981;&#x5FD8;&#x8BB0;&#x6DFB;&#x52A0;&#x5217;&#x8868;&#x7684; - &#x7B26;&#x53F7;&#x3002;</p></div>
+<h2 class="mume-header" id="%E8%A1%A8%E6%A0%BC">&#x8868;&#x683C;</h2>
+
+<p>&#x5728;markdown&#x4E0A;&#x7ED8;&#x5236;&#x8868;&#x683C;&#x662F;&#x4E00;&#x4EF6;&#x5F88;&#x7B80;&#x5355;&#x7684;&#x4E8B;&#x60C5;&#xFF0C;&#x5B83;&#x901A;&#x8FC7;&#x7B80;&#x5355;&#x7684; <code>-</code> &#x3001; <code>|</code> &#x548C; <code>:</code> &#x7EC4;&#x5408;&#x8D77;&#x6765;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x8868;&#x683C;&#x7684;&#x7ED8;&#x5236;&#x3002;</p>
+<p>&#x5177;&#x4F53;&#x65B9;&#x5F0F;&#xFF1A;</p>
+<ul>
+<li>&#x4F7F;&#x7528; <code>|</code> &#x5206;&#x5272;&#x6BCF;&#x4E00;&#x5217;&#x7684;&#x5185;&#x5BB9;&#x3002;<em>&#x6709;&#x4E9B;&#x7F16;&#x8F91;&#x5668;&#x662F;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x4E24;&#x8FB9;&#x7684; <code>|</code>&#x7684;&#x3002;</em></li>
+<li>&#x4F7F;&#x7528; <code>-</code> &#x5206;&#x5272;&#x8868;&#x5934;&#x548C;&#x5185;&#x5BB9;&#x3002;</li>
+<li>&#x4F7F;&#x7528; <code>:</code> &#x63A7;&#x5236;&#x6BCF;&#x4E00;&#x5217;&#x7684;&#x5BF9;&#x9F50;&#x65B9;&#x5F0F;&#xFF0C;&#x9ED8;&#x8BA4;&#x5DE6;&#x5BF9;&#x9F50;&#x3002;</li>
+</ul>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">| &#x8868;&#x5934;1 | &#x8868;&#x5934;2 | &#x8868;&#x5934;3 |
+|-|:-:|-:|
+| &#x7B2C;&#x4E00;&#x5217;&#x7684;&#x5185;&#x5BB9; | &#x7B2C;&#x4E8C;&#x5217;&#x7684;&#x5185;&#x5BB9; | &#x7B2C;&#x4E09;&#x5217;&#x7684;&#x5185;&#x5BB9; |
+| &#x5185;&#x5BB9;1 | &#x5185;&#x5BB9;2 | &#x5185;&#x5BB9;3 |
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>&#x8868;&#x5934;1</th>
+<th style="text-align:center">&#x8868;&#x5934;2</th>
+<th style="text-align:right">&#x8868;&#x5934;3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x7B2C;&#x4E00;&#x5217;&#x7684;&#x5185;&#x5BB9;</td>
+<td style="text-align:center">&#x7B2C;&#x4E8C;&#x5217;&#x7684;&#x5185;&#x5BB9;</td>
+<td style="text-align:right">&#x7B2C;&#x4E09;&#x5217;&#x7684;&#x5185;&#x5BB9;</td>
+</tr>
+<tr>
+<td>&#x5185;&#x5BB9;1</td>
+<td style="text-align:center">&#x5185;&#x5BB9;2</td>
+<td style="text-align:right">&#x5185;&#x5BB9;3</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 class="mume-header" id="%E5%88%A9%E7%94%A8-html-%E7%BB%98%E5%88%B6%E6%9B%B4%E4%B8%BA%E5%A4%8D%E6%9D%82%E7%9A%84%E8%A1%A8%E6%A0%BC">&#x5229;&#x7528; HTML &#x7ED8;&#x5236;&#x66F4;&#x4E3A;&#x590D;&#x6742;&#x7684;&#x8868;&#x683C;</h3>
+
+<p>&#x867D;&#x7136;&#x8FD9;&#x6837;&#x7684;&#x8868;&#x683C;&#x53EF;&#x4EE5;&#x6EE1;&#x8DB3;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x60C5;&#x51B5;&#xFF0C;&#x4F46;&#x6709;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x4ECD;&#x7136;&#x9700;&#x8981;&#x66F4;&#x4E3A;&#x590D;&#x6742;&#x7684;&#x5408;&#x5E76;&#x60C5;&#x51B5;&#x3002;&#x53EF;&#x4EE5;&#x5229;&#x7528; <code>HTML</code> &#x7684; <code>table</code> &#x6807;&#x7B7E;&#x6765;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x8FD9;&#x9700;&#x8981;&#x4E00;&#x70B9;&#x70B9; <code>HTML</code> &#x7684;&#x57FA;&#x7840;&#xFF0C;&#x4E0D;&#x8FC7;&#x6CA1;&#x6709;&#x5173;&#x7CFB;&#xFF0C;&#x8FD9;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x4E0B;&#x9762;&#x4EE3;&#x7801;&#x5BF9;&#x5B8C;&#x5168;&#x6CA1;&#x6709;&#x63A5;&#x89E6;&#x7684;&#x4EBA;&#x4E5F;&#x5F88;&#x53CB;&#x597D;&#xFF1A;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="html" class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span>20%</span><span class="token punctuation">&gt;</span></span>&#x5217;&#x5BBD; `width=20%`<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span>45%</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">=&quot;</span><span class="token attr-value"><span class="token property">text-align</span><span class="token punctuation">:</span>center</span><span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x8868;&#x5934;&#x5C45;&#x4E2D; `style=&quot;text-align:center&quot;`<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">widht</span><span class="token attr-value"><span class="token punctuation">=</span>20%</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">=&quot;</span><span class="token attr-value"><span class="token property">text-align</span><span class="token punctuation">:</span>right</span><span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>&#x5C45;&#x53F3;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">widht</span><span class="token attr-value"><span class="token punctuation">=</span>5%</span><span class="token punctuation">&gt;</span></span>&#x5217;3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span> <span class="token punctuation">&gt;</span></span>&#x8BBE;&#x7F6E;&#x80CC;&#x666F;&#x8272; <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span> <span class="token attr-name">bgcolor</span><span class="token attr-value"><span class="token punctuation">=</span>rgb(92,</span> <span class="token attr-name">184,</span> <span class="token attr-name">92)</span><span class="token punctuation">&gt;</span></span>`bgcolor=rgb(92, 184, 92)`<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span> <span class="token attr-name">bgcolor</span><span class="token attr-value"><span class="token punctuation">=</span>#eea236</span><span class="token punctuation">&gt;</span></span>`bgcolor=#eea236`<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span> <span class="token attr-name">bgcolor</span><span class="token attr-value"><span class="token punctuation">=</span>pink</span><span class="token punctuation">&gt;</span></span>`bgcolor=pink`<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>**&#x5408;&#x5E76;&#x5217;**<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span> <span class="token attr-name">colspan</span><span class="token attr-value"><span class="token punctuation">=</span>3</span> <span class="token attr-name">align</span><span class="token attr-value"><span class="token punctuation">=</span>center</span><span class="token punctuation">&gt;</span></span> `&#x8D77;&#x59CB;&#x5217;colspan=2` `align=center`<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span> <span class="token attr-name">rowspan</span><span class="token attr-value"><span class="token punctuation">=</span>3</span><span class="token punctuation">&gt;</span></span>**&#x5408;&#x5E76;&#x884C;** <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span>`&#x8D77;&#x59CB;&#x884C;rowspan=3`<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span> <span class="token attr-name">align</span><span class="token attr-value"><span class="token punctuation">=</span>center</span><span class="token punctuation">&gt;</span></span>`align=center`&#x5BF9;`th`&#x65E0;&#x6548;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>cell<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>cell<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">=&quot;</span><span class="token attr-value"><span class="token property">text-align</span><span class="token punctuation">:</span>right</span><span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>`style=&quot;text-align:right&quot;`<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>cell<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span> <span class="token attr-name">rowspan</span><span class="token attr-value"><span class="token punctuation">=</span>2</span><span class="token punctuation">&gt;</span></span>&#x5408;&#x5E76;&#x884C; `rowspan=2`<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>cell<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>cell<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>cell<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>cell<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>cell<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>cell<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">&gt;</span></span>
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<table>
+   <tbody><tr>
+        <th width="20%">&#x5217;&#x5BBD; `width=20%`</th>
+        <th width="45%" style="text-align:center">&#x8868;&#x5934;&#x5C45;&#x4E2D; `style=&quot;text-align:center&quot;`</th>
+        <th widht="20%" style="text-align:right">&#x5C45;&#x53F3;</th>
+        <th widht="5%">&#x5217;3</th>
+   </tr>
+   <tr>
+        <td>&#x8BBE;&#x7F6E;&#x80CC;&#x666F;&#x8272; </td>
+        <td bgcolor="rgb(92," 184, 92)>`bgcolor=rgb(92, 184, 92)`</td>
+        <td bgcolor="#eea236">`bgcolor=#eea236`</td>
+        <td bgcolor="pink">`bgcolor=pink`</td>
+   </tr>
+   <tr>
+        <td>**&#x5408;&#x5E76;&#x5217;**</td>
+        <td colspan="3" align="center"> `&#x8D77;&#x59CB;&#x5217;colspan=2` `align=center`</td>
+   </tr>
+   <tr>
+        <td rowspan="3">**&#x5408;&#x5E76;&#x884C;** <br>`&#x8D77;&#x59CB;&#x884C;rowspan=3`</td>
+        <td align="center">`align=center`&#x5BF9;`th`&#x65E0;&#x6548;</td>
+        <td>cell</td>
+        <td>cell</td>
+   </tr>
+   <tr>
+        <td style="text-align:right">`style=&quot;text-align:right&quot;`</td>
+        <td>cell</td>
+        <td rowspan="2">&#x5408;&#x5E76;&#x884C; `rowspan=2`</td>
+   </tr>
+   <tr>
+        <td>cell</td>
+        <td>cell</td>
+   </tr>
+   <tr><td>cell</td><td>cell</td><td>cell</td><td>cell</td></tr>
+</tbody></table>
+<h2 class="mume-header" id="%E7%BB%98%E5%9B%BE">&#x7ED8;&#x56FE;</h2>
+
+<p>markdown&#x672C;&#x8EAB;&#x5E76;&#x4E0D;&#x53EF;&#x4EE5;&#x7ED8;&#x56FE;&#xFF0C;&#x4F46;&#x662F;&#x901A;&#x8FC7;&#x4E00;&#x4E9B;&#x63D2;&#x4EF6;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#xFF0C;&#x5177;&#x4F53;&#x5185;&#x5BB9;&#x53C2;&#x770B;&#x5BF9;&#x5E94;&#x7684;&#x63D2;&#x4EF6;&#x6587;&#x6863;&#x3002;</p>
+<h3 class="mume-header" id="%E6%B5%81%E7%A8%8B%E5%9B%BE">&#x6D41;&#x7A0B;&#x56FE;</h3>
+
+<p>&#x5177;&#x4F53;&#x7684;&#x6D41;&#x7A0B;&#x56FE;&#x8BED;&#x6CD5;&#xFF0C;&#x53C2;&#x770B;&#xFF1A;<a href="http://adrai.github.io/flowchart.js/">&#x6D41;&#x7A0B;&#x56FE;&#x8BED;&#x6CD5; flowchart</a></p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown"> ``` flow
+st=&gt;start: &#x5F00;&#x59CB;:&gt;https://www.jeremyjone.com
+ op=&gt;operation: My Operation
+ cond=&gt;condition: Yes or No?
+ e=&gt;end
+ st-&gt;op-&gt;cond
+ cond(yes)-&gt;e
+ cond(no)-&gt;op
+ ``` // &#x7ED3;&#x675F;
+</pre><div class="flow">st=&gt;start: &#x5F00;&#x59CB;:&gt;https://www.jeremyjone.com
+op=&gt;operation: My Operation
+cond=&gt;condition: Yes or No?
+e=&gt;end
+st-&gt;op-&gt;cond
+cond(yes)-&gt;e
+cond(no)-&gt;op
+</div><h3 class="mume-header" id="%E5%BA%8F%E5%88%97%E5%9B%BE">&#x5E8F;&#x5217;&#x56FE;</h3>
+
+<p>&#x5177;&#x4F53;&#x7684;&#x5E8F;&#x5217;&#x56FE;&#x8BED;&#x6CD5;&#xFF0C;&#x53C2;&#x770B;&#xFF1A;<a href="http://bramp.github.io/js-sequence-diagrams/">&#x5E8F;&#x5217;&#x56FE;&#x8BED;&#x6CD5; js-sequence-diagrams</a></p>
+<h2 class="mume-header" id="%E5%85%AC%E5%BC%8F">&#x516C;&#x5F0F;</h2>
+
+<p>markdown&#x901A;&#x8FC7;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x8BED;&#x6CD5;&#x53EF;&#x4EE5;&#x8F7B;&#x677E;&#x7ED8;&#x5236;&#x51FA;&#x590D;&#x6742;&#x7684;&#x516C;&#x5F0F;&#x3002;&#x66F4;&#x591A;&#x5173;&#x4E8E;&#x516C;&#x5F0F;&#x7684;&#x8BED;&#x6CD5;&#xFF0C;&#x53C2;&#x770B;&#xFF1A;<a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">&#x6570;&#x5B66;&#x516C;&#x5F0F;&#x8BED;&#x6CD5; mathjax</a></p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">$\sqrt[3]{\frac xy}$
+
+$\left(\frac{\sqrt x}{y^3}\right)$
+
+$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$
+</pre><p>&#x6548;&#x679C;&#xFF1A;</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mroot><mfrac><mi>x</mi><mi>y</mi></mfrac><mn>3</mn></mroot></mrow><annotation encoding="application/x-tex">\sqrt[3]{\frac xy}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.8399999999999999em;vertical-align:-0.747858em;"></span><span class="mord sqrt"><span class="root"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5287904em;"><span style="top:-2.7065704em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size6 size1 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.092142em;"><span class="svg-align" style="top:-3.8em;"><span class="pstrut" style="height:3.8em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.052142em;"><span class="pstrut" style="height:3.8em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.8800000000000001em;"><svg width="400em" height="1.8800000000000001em" viewBox="0 0 400000 1944" preserveAspectRatio="xMinYMin slice"><path d="M983 90
+l0 -0
+c4,-6.7,10,-10,18,-10 H400000v40
+H1013.1s-83.4,268,-264.1,840c-180.7,572,-277,876.3,-289,913c-4.7,4.7,-12.7,7,-24,7
+s-12,0,-12,0c-1.3,-3.3,-3.7,-11.7,-7,-25c-35.3,-125.3,-106.7,-373.3,-214,-744
+c-10,12,-21,25,-33,39s-32,39,-32,39c-6,-5.3,-15,-14,-27,-26s25,-30,25,-30
+c26.7,-32.7,52,-63,76,-91s52,-60,52,-60s208,722,208,722
+c56,-175.3,126.3,-397.3,211,-666c84.7,-268.7,153.8,-488.2,207.5,-658.5
+c53.7,-170.3,84.5,-266.8,92.5,-289.5z
+M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.747858em;"><span></span></span></span></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo fence="true">(</mo><mfrac><msqrt><mi>x</mi></msqrt><msup><mi>y</mi><mn>3</mn></msup></mfrac><mo fence="true">)</mo></mrow><annotation encoding="application/x-tex">\left(\frac{\sqrt x}{y^3}\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.038em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463142857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4738665em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord sqrt mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8059050000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault mtight" style="padding-left:0.833em;">x</span></span><span style="top:-2.765905em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail mtight" style="min-width:0.853em;height:1.08em;"><svg width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.234095em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>&#x2211;</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></msubsup><msup><mi>i</mi><mn>2</mn></msup><mo>=</mo><mfrac><mrow><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>+</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mn>2</mn><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mn>6</mn></mfrac></mrow><annotation encoding="application/x-tex">\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.113818em;vertical-align:-0.29971000000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">&#x2211;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.4539199999999999em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.10892em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">6</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mbin mtight">+</span><span class="mord mathdefault mtight">n</span><span class="mclose mtight">)</span><span class="mopen mtight">(</span><span class="mord mtight">2</span><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Markdown&#x662F;&#x4E00;&#x79CD;&#x6587;&#x672C;&#x6807;&#x8BB0;&#x8BED;&#x8A00;&#x3002; <a href="#fnref1" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>HTML&#x662F;&#x4E00;&#x79CD;&#x8D85;&#x6587;&#x672C;&#x6807;&#x8BB0;&#x8BED;&#x8A00;&#x3002; <a href="#fnref2" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>&#x7528;&#x4E8E;markdown&#x7684;&#x63D2;&#x4EF6;&#x3002; <a href="#fnref3" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+</ol>
+</section>
+</div>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    <script>
+var flowcharts = document.getElementsByClassName('flow')
+for (var i = 0; i < flowcharts.length; i++) {
+  var flow = flowcharts[i]
+  try {
+    var diagram = flowchart.parse(flow.textContent)
+    flow.id = 'flow_' + i
+    flow.innerHTML = ''
+    diagram.drawSVG(flow.id)
+  } catch (error) {
+    flow.innerHTML = '<pre class="language-text">' + error.toString() + '</pre>'
+  }
+}
+</script>
+    
+    
+  
+    </body></html>
