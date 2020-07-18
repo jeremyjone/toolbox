@@ -1,17 +1,21 @@
 # 欢迎来到JeremyJone的工具箱
 
-## - 通用
+**本页面不再维护，现有资源仍可用。**
 
-[Git命令](./common/Git.html)
+**新版文档请移步 [https://jeremyjone.github.io/docs](https://jeremyjone.github.io/docs)**
 
-[Vim命令](./common/Vim.html)
+## ~~- 通用~~
 
-[Markdown语法](./common/MD.html)
+~~[Git命令](./common/Git.html)~~
 
-## - 测试文件夹
+~~[Vim命令](./common/Vim.html)~~
 
-[测试文件夹](./test/index.html)
+~~[Markdown语法](./common/MD.html)~~
 
-## - 文件类
+~~## - 测试文件夹~~
 
-[pac文件](./file/pac.txt)
+~~[测试文件夹](./test/index.html)~~
+
+~~## - 文件类~~
+
+~~[pac文件](./file/pac.txt)~~
